@@ -1,0 +1,18 @@
+xrrocha.yamltag.example.Hobby:
+    tagName: hobby
+
+xrrocha.yamltag.example.Language:
+    tagName: language
+
+xrrocha.yamltag.example.Person:
+    tagName: person
+    listProperties:
+        hobbies: xrrocha.yamltag.example.Hobby
+    mapProperties:
+        languageSkills:
+            keyClass: xrrocha.yamltag.example.Language
+            valueClass: xrrocha.yamltag.example.LanguageSkill
+
+xrrocha.yamltag.example.Term:
+    tagName: term
+

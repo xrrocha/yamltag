@@ -1,0 +1,22 @@
+languges:
+    - &spanish !language
+        isoCode: es
+        englishName: Spanish
+        nativeName: Español
+    - &portuguese !language
+        isoCode: pt
+        englishName: Portuguese
+        nativeName: Português
+
+terms:
+    - !term
+        englishWord: street
+        translations:
+            *spanish: calle
+            *portuguese: rua
+    - !term
+        englishWord: newspaper
+        translations:
+            *spanish: periódico
+            *portuguese: jornal
+    

@@ -1,0 +1,64 @@
+hobbies:
+    - &gaming !hobby
+        name:             Video and computer games
+        type:             RECREATIONAL
+    - &reading !hobby
+        name:             Reading
+        type:             EDUCATIONAL
+    - &basketball !hobby
+        name:             Basketball
+        type:             SPORTING
+    - &programming !hobby
+        name:             Programming
+        type:             PROFESSIONAL
+
+languages:
+    - &english !language
+        isoCode:          en
+        englishName:      English
+        nativeName:       English
+    - &spanish !language
+        isoCode:          es
+        englishName:      Spanish
+        nativeName:       Español
+    - &portuguese !language
+        isoCode:          pt
+        englishName:      Portuguese
+        nativeName:       Português
+
+people:
+    - &john !person
+        name:
+          firstName:      John
+          lastName:       Doe
+        gender:           MALE
+        hobbies:
+            - *reading
+            - *programming
+        languageSkills:
+            *english:
+                speaking: ADVANCED
+                reading:  ADVANCED
+                writing:  ADVANCED
+            *spanish:
+                speaking: INTERMEDIATE
+                reading:  ADVANCED
+                writing:  INTERMEDIATE
+    - &janet !person
+        name:
+          firstName:      Janet
+          lastName:       Doe
+        gender:           FEMALE
+        hobbies:
+            - *gaming
+            - *basketball
+        languageSkills:
+            *portuguese:
+                speaking: ADVANCED
+                reading:  ADVANCED
+                writing:  ADVANCED
+            *english:
+                speaking: INTERMEDIATE
+                reading:  ADVANCED
+                writing:  BASIC
+                    

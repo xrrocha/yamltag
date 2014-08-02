@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <title>SnakeYAML Type Descriptor Support</title>
+    </head>
+    <body>
+        <p>
+            This package provides a Yaml factory that creates Yaml instances built with a custom
+            <code>org.yaml.snakeyaml.constructor.Constructor</code>
+            offering declarative support for:
+        </p>
+        <ul>
+            <li>
+                Mapping of user-defined tag names to Java classes
+            </li>
+            <li>
+                <code>org.yaml.snakeyaml.TypeDescription</code>s for map and list bean properties
+            </li>
+            <li>
+                Java class literals
+            </li>
+        </ul>
+        
+        <p>
+            Upon instantiation, the Yaml factory scans the classpath (as specified by its optional <code>classLoader</code>
+            constructor argument) looking for top-level resources named <code>yamltag.yaml</code>.
+            Each such resource is consumed to generate Yaml type descriptors as explained below.
+            If no class loader is specified, the Yaml factory defaults to the current thread's context class loader.
+        </p>
+        <p>
+            A <code>yamltag.yaml</code> resource file contains one or more type descriptor entries
+            specifying:
+        </p>
+        <ul>
+            <li>
+                A fully qualified <em>class name</em>
+            </li>
+            <li>
+                An optional <em>tag name</em>
+            </li>
+            <li>
+                Zero or more <em>list property definitions</em> specifying the element class for bean properties of type
+                <code>java.util.List</code> or
+                <code>java.util.Set</code>
+            </li>
+            <li>
+                Zero or more <em>map property definitions</em> specifying the key and value classes for bean properties of type
+                <code>java.util.Map</code>
+            </li>
+        </ul>
+        
+        <p>
+            Thus, given the following Java bean:
+        </p>
+        <blockquote><pre><span style="color: green">public class</span> MyBean  {
+   <span style="color: green">private</span> Set&lt;Date&gt; myDateSet;
+   <span style="color: green">public</span> Set&lt;Date&gt; getMyDateSet() { <span style="color: green">return</span> myDateSet; }
+   <span style="color: green">public</span> void setMyDateSet(Set&lt;Date&gt; myDateSet) { <span style="color: green">this.</span>myDateSet = myDateSet; }
+
+   <span style="color: green">private</span> List&lt;Integer&gt; myIntegerList;
+   <span style="color: green">public</span> List&lt;Integer&gt; getMyIntegerList() { <span style="color: green">return</span> myIntegerList; }
+   <span style="color: green">public</span> void setMyIntegerList(List&lt;Integer&gt; myIntegerList) { <span style="color: green">this.</span>myIntegerList = myIntegerList; }
+
+   <span style="color: green">private</span> Map&lt;Long, List&lt;Double&gt;&gt; myLongToListMap;
+   <span style="color: green">public</span> Map&lt;Long, List&lt;Double&gt;&gt; getMyLongToListMap() { <span style="color: green">return</span> myLongToListMap; }
+   <span style="color: green">public</span> void setMyLongToListMap(Map&lt;Long, List&lt;Double&gt;&gt; myLongToListMap) { <span style="color: green">this.</span>myLongToListMap = myLongToListMap; }
+   
+   <span style="color: green">private</span> Class&lt;?&gt; myClass;
+   <span style="color: green">public</span> Class&lt;?&gt; getMyClass() { <span style="color: green">return</span> myClass; }
+   <span style="color: green">public</span> void setMyClass(Class&lt;?&gt; myClass) { <span style="color: green">this.</span>myClass = myClass; }
+}</pre></blockquote>
+        
+        <p>
+            its entry in a <code>yamltag.yaml</code> resource file would look like:
+        </p>
+        <blockquote><pre><span style="color: green; font-weight: bold">xrrocha.yamltag.example.MyBean</span>: <span style="color: brown"># The fully qualified class name</span>
+    <span style="color: navy">tagName</span>: myBean <span style="color: brown"># The (optional) tag name, s&agrave;ns the exclamation sign</span>
+    <span style="color: navy">listProperties</span>: <span style="color: brown"># Bean properties of a collection type</span>
+        <span style="color: navy">myDateSet</span>: java.util.Date <span style="color: brown"># The set type</span>
+        <span style="color: navy">myIntegerList</span>: java.lang.Integer <span style="color: brown"># The list type</span>
+    <span style="color: navy">mapProperties</span>: <span style="color: brown"># Bean properties of a map type</span>
+        <span style="color: navy">myLongToListMap</span>: <span style="color: brown"># Each map property specifies its key and value types</span>
+            <span style="color: navy">keyClass</span>: java.lang.Long <span style="color: brown"># The map key type</span>
+            <span style="color: navy">valueClass</span>: java.util.List <span style="color: brown"># The map value type</span></pre></blockquote>
+
+        <p>
+            Once the above <code>yamltag.yaml</code> resource file has been placed at
+            a top-level location in the classpath, the following Yaml file will create a properly formed
+            instance of the <code>MyBean</code> class:
+        </p>
+        <blockquote><pre>--- <span style="color: green; font-weight: bold">!myBean</span>
+<span style="color: navy">myDateSet</span>:
+    - 1776-07-04 <span style="color: brown"># us</span>
+    - 1810-08-07 <span style="color: brown"># co</span>
+<span style="color: navy">myIntegerList</span>: <span style="color: brown"># A few notable integers</span>
+    - 6 <span style="color: brown"># The smallest perfect number</span>
+    - 42 <span style="color: brown"># The Answer to the Ultimate Question of Life, the Universe, and Everything</span>
+    - 1729 <span style="color: brown"># Ramanujan's taxi cab number</span>
+<span style="color: navy">myLongToListMap</span>:
+    1: <span style="color: brown"># A few transcendent numbers</span>
+        - <span style="color: magenta">!!float</span> 3.14159265 <span style="color: brown"># &pi;</span>
+        - <span style="color: magenta">!!float</span> 2.71828183 <span style="color: brown"># e</span>
+    2: <span style="color: brown"># A few algebraic numbers</span>
+        - <span style="color: magenta">!!float</span> 1.41421356 <span style="color: brown"># &#8730;2</span>
+        - <span style="color: magenta">!!float</span> 1.73205080 <span style="color: brown"># &#8730;3</span>
+
+<span style="color: navy">myClass</span>: <span style="color: green; font-weight: bold">!class</span> java.net.URL
+</pre></blockquote>
+        
+        <p>
+            Note that list elements in the <code>myLongToListMap</code> property still need to explicitly
+            specify their type by means of the standard <code>!!float</code> Yaml tag.
+            This is so because SnakeYAML's TypeDescription does not currently support nested list/map
+            property definitions.
+        </p>
+        
+        <p>
+            It is an error for a <code>yamltag.yaml</code> resource file to re-declare a tag name
+            that has been previously declared within the same classpath.
+        </p>
+    </body>
+</html>
