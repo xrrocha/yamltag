@@ -147,7 +147,7 @@ the following Yaml fragment would populate it:
 ```java
 interfaceImplementations:
     !class com.acme.loader.Verifier: !class com.acme.loader.CRCVerifier
-    !class com.acme.loader.Deflator: !class com.acme.load.7ZDeflator
+    !class com.acme.loader.Deflator: !class com.acme.load.S7ZDeflator
 ```
 
 ## Usage ##
