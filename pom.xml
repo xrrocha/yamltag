@@ -6,12 +6,17 @@
 	<groupId>net.xrrocha</groupId>
 	<artifactId>yamltag</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0</version>
+	<version>1.0.0</version>
 	<name>SnakeYAML Type Tag Utilities</name>
 	<description>
-	   A library to associate SnakeYAML tags with class names
+	   A library to associate SnakeYAML tags with class constructors
        and to specify generic types for list and map properties
     </description>
+	<inceptionYear>2010</inceptionYear>
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/xrrocha/yamltag/issues</url>
+	</issueManagement>
 	<url>https://github.com/xrrocha/yamltag</url>
 	<licenses>
 		<license>
@@ -51,6 +56,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>${maven-compiler-plugin.source}</source>
 					<target>${maven-compiler-plugin.target}</target>
@@ -59,6 +65,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -66,18 +73,12 @@
 							<goal>jar</goal>
 						</goals>
 					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
 				</executions>
 			</plugin>
 		</plugins>
@@ -90,7 +91,9 @@
 
 		<junit.version>4.11</junit.version>
 
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 		<maven-compiler-plugin.source>1.6</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>1.6</maven-compiler-plugin.target>
+        <maven-source-plugin.version>2.3</maven-source-plugin.version>
 	</properties>
 </project>
