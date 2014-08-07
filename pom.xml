@@ -3,11 +3,34 @@
 	<modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>xrrocha</groupId>
-    <artifactId>yamltag</artifactId>
+	<groupId>net.xrrocha</groupId>
+	<artifactId>yamltag</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0</version>
 	<name>SnakeYAML Type Tag Utilities</name>
+	<description>
+	   A library to associate SnakeYAML tags with class names
+       and to specify generic types for list and map properties
+    </description>
+	<url>https://github.com/xrrocha/yamltag</url>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>xrrocha</id>
+			<name>Ricardo Rocha</name>
+			<email>xrrocha@gmail.com</email>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git@github.com:xrrocha/yamltag.git</connection>
+		<developerConnection>scm:git:git@github.com:xrrocha/yamltag.git</developerConnection>
+		<url>git@github.com:xrrocha/yamltag.git</url>
+	</scm>
 
 	<dependencies>
 		<dependency>
@@ -17,10 +40,10 @@
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

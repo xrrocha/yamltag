@@ -1,4 +1,4 @@
-package xrrocha.yamltag;
+package net.xrrocha.yamltag;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,10 +13,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import net.xrrocha.yamltag.YamlFactoryException.ResourceIOException;
+
 import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
-
-import xrrocha.yamltag.YamlFactoryException.ResourceIOException;
 
 
 public class TypeDescriptor {

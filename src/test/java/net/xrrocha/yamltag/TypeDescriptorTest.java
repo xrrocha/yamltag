@@ -1,4 +1,4 @@
-package xrrocha.yamltag;
+package net.xrrocha.yamltag;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -20,11 +20,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.xrrocha.yamltag.DefaultYamlFactory;
+import net.xrrocha.yamltag.ListPropertyDescriptor;
+import net.xrrocha.yamltag.MapPropertyDescriptor;
+import net.xrrocha.yamltag.TypeDescriptor;
+import net.xrrocha.yamltag.example.Term;
+
 import org.junit.Test;
 import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
-
-import xrrocha.yamltag.example.Term;
 
 public class TypeDescriptorTest {
     public static class ExampleBean  {
@@ -42,7 +46,7 @@ public class TypeDescriptorTest {
     }
 
     private static final String TYPE_DESCRIPTOR_STRING = 
-        "xrrocha.yamltag.TypeDescriptorTest$ExampleBean:\n" +
+        "net.xrrocha.yamltag.TypeDescriptorTest$ExampleBean:\n" +
         "    tagName: exampleBean\n" +
         "    listProperties:\n" +
         "        set: java.util.Date\n" +

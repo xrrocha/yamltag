@@ -1,4 +1,4 @@
-package xrrocha.yamltag;
+package net.xrrocha.yamltag;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

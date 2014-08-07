@@ -1,4 +1,4 @@
-package xrrocha.yamltag;
+package net.xrrocha.yamltag;
 
 import java.util.logging.Logger;
 

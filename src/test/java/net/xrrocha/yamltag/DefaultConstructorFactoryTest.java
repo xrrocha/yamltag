@@ -1,4 +1,4 @@
-package xrrocha.yamltag;
+package net.xrrocha.yamltag;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import net.xrrocha.yamltag.DefaultConstructorFactory;
+import net.xrrocha.yamltag.TypeDescriptor;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,7 +36,7 @@ public class DefaultConstructorFactoryTest {
     }
 
     private static final String TYPE_DESCRIPTOR_STRING = 
-        "xrrocha.yamltag.DefaultConstructorFactoryTest$ExampleBean:\n" +
+        "net.xrrocha.yamltag.DefaultConstructorFactoryTest$ExampleBean:\n" +
         "    tagName: exampleBean\n" +
         "    listProperties:\n" +
         "        set: java.util.Date\n" +

@@ -1,12 +1,12 @@
-package xrrocha.yamltag;
+package net.xrrocha.yamltag;
+
+import net.xrrocha.yamltag.YamlFactoryException.ClassLoadingException;
 
 import org.yaml.snakeyaml.constructor.AbstractConstruct;
 import org.yaml.snakeyaml.constructor.Constructor;
 import org.yaml.snakeyaml.nodes.Node;
 import org.yaml.snakeyaml.nodes.ScalarNode;
 import org.yaml.snakeyaml.nodes.Tag;
-
-import xrrocha.yamltag.YamlFactoryException.ClassLoadingException;
 
 public class ClassConstructor extends Constructor {
     public static final String CLASS_TAG_NAME = "!class";

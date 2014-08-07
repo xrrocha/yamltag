@@ -1,4 +1,4 @@
-package xrrocha.yamltag.example;
+package net.xrrocha.yamltag.example;
 
 import java.util.Map;
 import java.util.Set;

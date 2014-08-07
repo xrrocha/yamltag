@@ -1,4 +1,4 @@
-package xrrocha.yamltag.example;
+package net.xrrocha.yamltag.example;
 
 public class Language {
     private String isoCode;

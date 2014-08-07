@@ -1,4 +1,4 @@
-package xrrocha.yamltag;
+package net.xrrocha.yamltag;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -9,14 +9,15 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import net.xrrocha.yamltag.DefaultYamlFactory;
+import net.xrrocha.yamltag.example.Hobby;
+import net.xrrocha.yamltag.example.Language;
+import net.xrrocha.yamltag.example.LanguageSkill;
+import net.xrrocha.yamltag.example.Name;
+import net.xrrocha.yamltag.example.Person;
+
 import org.junit.Test;
 import org.yaml.snakeyaml.Yaml;
-
-import xrrocha.yamltag.example.Hobby;
-import xrrocha.yamltag.example.Language;
-import xrrocha.yamltag.example.LanguageSkill;
-import xrrocha.yamltag.example.Name;
-import xrrocha.yamltag.example.Person;
 
 public class DefaultYamlFactoryTest {
     @Test

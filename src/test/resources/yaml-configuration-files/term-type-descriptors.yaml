@@ -1,6 +1,6 @@
-xrrocha.yamltag.example.Term:
+net.xrrocha.yamltag.example.Term:
     tagName: term
     mapProperties:
         translations:
-            keyClass: xrrocha.yamltag.example.Language
+            keyClass: net.xrrocha.yamltag.example.Language
             valueClass: java.lang.String
