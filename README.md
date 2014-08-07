@@ -14,6 +14,18 @@ unwieldy for properties of interface, collection or map types.
 Another SnakeYAML use case benefiting from these dispensations is the authoring of test data. One such scenario is the
 testing of business logic against JPA classes populated from Yaml files rather than from a database.
 
+## Maven Coordinates ##
+
+To include the `yamltag` library in your Maven project use the following dependency:
+
+```xml
+<dependency>
+    <groupId>net.xrrocha</groupId>
+    <artifactId>yamltag</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 ## A Simple Example ##
 
 Consider the following Yaml fragment corresponding to an event notifier:
