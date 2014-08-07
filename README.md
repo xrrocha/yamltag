@@ -1,4 +1,4 @@
-# SnakeYAML Type Descriptor #
+# YamlTag #
 
 SnakeYAML is often used to provide typed configurations to Java application frameworks. In this context, users
 frequently need to edit complex Yaml-encoded object graphs and annotate them with Java type information.
