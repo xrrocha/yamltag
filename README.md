@@ -15,7 +15,7 @@ Another SnakeYAML use case benefiting from these dispensations is the authoring 
 testing of business logic against JPA classes populated from Yaml files rather than from a database.
 
 ## Maven Coordinates ##
-
+ 
 To include the `yamltag` library in your Maven project use the following dependency:
 
 ```xml
