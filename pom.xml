@@ -6,7 +6,7 @@
 	<groupId>net.xrrocha</groupId>
 	<artifactId>yamltag</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>SnakeYAML Type Tag Utilities</name>
 	<description>
 	   A library to associate SnakeYAML tags with class constructors

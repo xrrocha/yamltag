@@ -7,9 +7,11 @@ import java.net.URLConnection;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,7 +52,24 @@ public class TypeDescriptor {
             descriptors.addAll(resourceDescriptors);
         }
 
-        return descriptors;
+        Collection<TypeDescriptor> selectedDescriptors = selectUniqueTagNames(descriptors);
+        return selectedDescriptors;
+    }
+    
+    private static Collection<TypeDescriptor> selectUniqueTagNames(Collection<TypeDescriptor> descriptors) {
+    	Set<String> tagNames = new HashSet<String>();
+    	Collection<TypeDescriptor> selectedDescriptors = new LinkedList<TypeDescriptor>();
+    	
+    	for (TypeDescriptor descriptor: descriptors) {
+    		if (tagNames.contains(descriptor.tagName)) {
+    			logger.warning("Duplicate tag name: " + descriptor.tagName);
+    		} else {
+    			tagNames.add(descriptor.tagName);
+    			selectedDescriptors.add(descriptor);
+    		}
+    	}
+    	
+    	return selectedDescriptors;
     }
     
     public static Collection<TypeDescriptor> fromMap(Map<String, Object> classMap, ClassLoader classLoader) {
