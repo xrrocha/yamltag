@@ -39,6 +39,7 @@ public class TypeDescriptor {
         return fromResources(resourceLocation, Thread.currentThread().getContextClassLoader());
     }
 
+    // TODO Allow for multiple tag names for the same class
     public static Collection<TypeDescriptor> fromResources(String resourceLocation, ClassLoader classLoader) {
     	if (logger.isLoggable(Level.INFO))
     		logger.finest(String.format("Using %s to retrieve %s", classLoader, resourceLocation));
@@ -72,6 +73,7 @@ public class TypeDescriptor {
     	return selectedDescriptors;
     }
     
+    // TODO  Check for duplicate tag names in map
     public static Collection<TypeDescriptor> fromMap(Map<String, Object> classMap, ClassLoader classLoader) {
         Collection<TypeDescriptor> descriptors = new LinkedList<TypeDescriptor>();
 

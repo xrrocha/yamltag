@@ -6,6 +6,14 @@ public class Term {
     private String englishWord;
     Map<Language, String> translations;
     
+    public Term() {
+    }
+    
+    public Term(String englishWord, Map<Language, String> translations) {
+        this.englishWord = englishWord;
+        this.translations = translations;
+    }
+
     public String getEnglishWord() {
         return englishWord;
     }
