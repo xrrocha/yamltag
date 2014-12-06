@@ -4,14 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,8 +15,8 @@ import org.yaml.snakeyaml.Yaml;
 
 
 public class TypeDescriptor {
-    private String tagName;
     private Class<?> targetClass;
+    private List<String> tagNames = new ArrayList<String>();
     private Map<String, ListPropertyDescriptor> listPropertyDescriptors = new HashMap<String, ListPropertyDescriptor>();
     private Map<String, MapPropertyDescriptor> mapPropertyDescriptors = new HashMap<String, MapPropertyDescriptor>();
 
@@ -62,10 +55,10 @@ public class TypeDescriptor {
     	Collection<TypeDescriptor> selectedDescriptors = new LinkedList<TypeDescriptor>();
     	
     	for (TypeDescriptor descriptor: descriptors) {
-    		if (tagNames.contains(descriptor.tagName)) {
-    			logger.warning("Duplicate tag name: " + descriptor.tagName);
+    		if (tagNames.contains(descriptor.tagNames.get(0))) {
+    			logger.warning("Duplicate tag name: " + descriptor.tagNames.get(0));
     		} else {
-    			tagNames.add(descriptor.tagName);
+    			tagNames.add(descriptor.tagNames.get(0));
     			selectedDescriptors.add(descriptor);
     		}
     	}
@@ -87,7 +80,7 @@ public class TypeDescriptor {
             for (String yamlTypeDescriptorPropertyName : yamlTypeDescriptorPropertyMap.keySet()) {
                 if (TAG_NAME.equals(yamlTypeDescriptorPropertyName)) {
                     String propertyValue = (String) yamlTypeDescriptorPropertyMap.get(yamlTypeDescriptorPropertyName);
-                    descriptor.setTagName(propertyValue);
+                    descriptor.getTagNames().add(propertyValue);
                 } else if (MAP_PROPERTIES_TAG_NAME.equals(yamlTypeDescriptorPropertyName)) {
                     @SuppressWarnings("unchecked")
                     Map<String, Map<String, String>> mapProperties = (Map<String, Map<String, String>>) yamlTypeDescriptorPropertyMap
@@ -107,10 +100,10 @@ public class TypeDescriptor {
 
     public TypeDescription toTypeDescription() {
         if (typeDescription == null) {
-            if (tagName == null) {
+            if (tagNames == null) {
                 typeDescription = new TypeDescription(targetClass);
             } else {
-                typeDescription = new TypeDescription(targetClass, "!" + tagName);
+                typeDescription = new TypeDescription(targetClass, "!" + tagNames.get(0));
             }
 
             if (mapPropertyDescriptors != null) {
@@ -182,12 +175,12 @@ public class TypeDescriptor {
         }
     }
 
-    public String getTagName() {
-        return tagName;
+    public List<String> getTagNames() {
+        return tagNames;
     }
 
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
+    public void setTagNames(List<String> tagNames) {
+        this.tagNames = tagNames;
     }
 
     public Class<?> getTargetClass() {

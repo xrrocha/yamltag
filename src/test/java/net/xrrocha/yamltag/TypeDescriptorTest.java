@@ -73,7 +73,7 @@ public class TypeDescriptorTest {
         assertTrue(descriptors.iterator().hasNext());
         
         assertThat(descriptor, notNullValue());
-        assertThat(descriptor.getTagName(), equalTo("exampleBean"));
+        assertThat(descriptor.getTagNames().get(0), equalTo("exampleBean"));
     }
     
     @Test
